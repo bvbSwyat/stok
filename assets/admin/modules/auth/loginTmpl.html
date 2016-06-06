@@ -1,0 +1,27 @@
+<div>
+    <h2 class="page-header">Login</h2>
+    <form name="loginForm" ng-submit="loginUser()">
+        <div id="row-name">
+            <label for="name" class="col-sm-1 control-label ng-binding" style="font-size: 20px;">Login
+                </label>
+            <input type="text" id="name" style="width:200px" class="form-control"
+                   ng-model="loginFormData.name"
+                   required>
+        </div>
+        </br>
+        <div id="row-password">
+            <label for="password" class="col-sm-1 control-label ng-binding" style="font-size: 20px;">Password
+            </label>
+            <input type="password" id="password" style="width:200px" class="form-control"
+                   ng-model="loginFormData.password"
+                   required>
+        </div>
+        </br>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Login
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

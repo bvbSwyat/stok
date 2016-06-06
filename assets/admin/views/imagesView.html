@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-sm-6" ng-choose-file="logo" entry="entry().values">
+        <h3>Лого</h3>
+        <div class="upload_wrapper">
+            <div class="upload_button btn btn-primary">Завантажити Логотип</div>
+            <input type="file" file-model="img_file">
+        </div>
+        <div class="img_wrapper">
+            <img id="logo" ng-if="entry().values.logo" ng-src="/upload/shops/{{entry().values.logo}}"/>
+        </div>
+    </div>
+    <div class="col-sm-6" ng-choose-file="list" entry="entry().values">
+        <h3>Зображення</h3>
+        <div class="upload_wrapper">
+            <div class="upload_button btn btn-primary">Завантажити Зображення</div>
+            <input type="file" file-model="img_file">
+        </div>
+        <div class="img_wrapper">
+            <img ng-if="image" id="list_item{{$index}}" ng-src="/upload/shops/{{image}}" ng-repeat="image in entry().values.images"/>
+        </div>
+    </div>
+</div>

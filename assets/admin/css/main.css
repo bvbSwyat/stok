@@ -1,0 +1,54 @@
+.admin .shop_logo, .admin .shop_images{
+    width: 100px;
+    height: 100px;
+    background: url("../img/no_photo.gif") no-repeat;
+    margin-right: 10px;
+}
+
+.admin images-list {
+    max-width: 350px;
+}
+
+.upload_wrapper {
+    position: relative;
+}
+
+.upload_button {
+    position: absolute;
+}
+
+.upload_wrapper input {
+    width: 0px;
+    height: 0px;
+}
+
+.img_wrapper {
+    margin-top: 40px;
+}
+.img_box {
+    display: inline-block;
+    width: 100px;
+    position: relative;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.img_box .delete_img {
+    background: rgba(41, 45, 45, 0.56);
+    color: white;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    position: absolute;
+    right: 0px;
+}
+
+.img_wrapper img {
+    width: 100px;
+    margin-left: 10px;
+}
+
+.ng-admin-entity-shop_images>form .form-group button {
+    display: none;
+}

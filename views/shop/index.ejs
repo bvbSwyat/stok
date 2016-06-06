@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="row bottom_block light">
+        <div class="row_right">
+            <div class="shop">
+                <div class="shop_wrapper">
+                    <div class="shop_title">
+                        <div class="title_back" style="background-color: <%= shop.color %>">
+                            <p class="shop_name"><%= shop.name %></p>
+                        </div>
+                        <span class="img_wrapper">
+                            <a
+                                    href="/upload/shops/<%= shop.media.logo %>"
+                                    data-lightbox="<%= shop.media.id %>"
+                                    data-title="<%= shop.name %>">
+
+                                <img
+                                        <%if (shop.media.logo == "") { %>
+                                        src="/admin/img/no_photo.gif"
+                                        <%} else {%>
+                                        src="/upload/shops/<%= shop.media.logo %>"
+                                        <%}%>
+                                />
+                            </a>
+                            <%if (shop.media.images.length > 0) { %>
+                            <div class="sm_img_list">
+                                <% _.each(shop.media.images, function (image) { %>
+                                <a href="/upload/shops/<%= image %>"
+                                   data-lightbox="<%= shop.media.id %>"
+                                   data-title="<%= shop.name %>">
+                                    <img src="/upload/shops/<%= image %>"/>
+                                </a>
+                                <% }) %>
+                            </div>
+                            <%}%>
+                        </span>
+                    </div>
+                    <div class="shop_info">
+                        <ul class="no_ul">
+                            <li>
+                                <div>Адреса:</div><a><%= shop.address %></a>
+                            </li>
+                            <li>
+                                <div>Тип магазину:</div><a>{{"<%= shop.type %>" | typeFilter}}</a>
+                            </li>
+                            <li>
+                                <div>Розмір:</div><a>{{"<%= shop.size %>" | sizeFilter}}</a>
+                            </li>
+                            <li ng-not-null="<%= shop.telephone %>">
+                                <div>Телeфон:</div><a><%= shop.telephone %></a>
+                            </li>
+                            <li ng-not-null="<%= shop.site %>">
+                                <div>Сайт:</div><a target="_blank"
+                                href="<%= shop.site %>" ><%= shop.site %></a>
+                            </li>
+                            <li ng-not-null="<%= shop.goods %>">
+                                <div>Товари:</div>
+                                <% _.each(shop.goods, function (item, index) { %>
+                                    <a href="/filter/goods=<%= item.id %>;"><%= item.name %></a>
+                                    <%if (shop.goods.length > index+1) { %>,
+                                    <%}%>
+                                <% }) %>
+                            </li>
+                            <%if (shop.rating) { %>,
+                                <li ng-show="commentsList.length">
+                                    <div>Рейтинг:</div>
+                                    <div star-rating ng-init="shopRating = <%= shop.rating.rating %>"
+                                         ng-model="shopRating"
+                                         max="5"
+                                         readonly="true">
+                                    </div>
+                                    <a ng-bind="(commentsList.length)"> </a>
+                                </li>
+                            <%}%>
+                        </ul>
+
+                        <table class="days_table">
+                            <tr><th>Дні тижня</th><th>Ціна (грн)</th></tr>
+                            <tr>
+                                <td>Понеділок</td><td><%= shop.p_mo %></td>
+                            </tr>
+                            <tr>
+                                <td>Вівторок</td><td><%= shop.p_tu %></td></td>
+                            </tr>
+                            <tr>
+                                <td>Середа</td><td><%= shop.p_we %></td></td>
+                            </tr>
+                            <tr>
+                                <td>Четвер</td><td><%= shop.p_th %></td></td>
+                            </tr>
+                            <tr>
+                                <td>П'ятниця</td><td><%= shop.p_fr %></td></td>
+                            </tr>
+                            <tr>
+                                <td>Субота</td><td><%= shop.p_su %></td></td>
+                            </tr>
+                            <tr>
+                                <td>Неділя</td><td><%= shop.p_sa %></td></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="comments" comments="<%= shop.id %>">
+                        <hr>
+                        <p>Новий відгук:</p>
+                        <form name="comments_form" class="new_form">
+                            <div>
+                                <label for="cemail">Імейл:</label>
+                                <input ng-model="cemail"  type="email" required="true" id="cemail"/>
+                                <label  class="rating_label" for="rating">Оцінка:</label>
+                                <div id="crating" star-rating ng-model="crating" max="5"></div>
+                            </div>
+                            <div>
+                                <label for="ccoment">Відгук:</label>
+                                <textarea ng-model="ccomment" required="true" id="ccoment"></textarea>
+                                <button ng-click="sendNewComment(comments_form)"
+                                        class="btn btn-success">
+                                    <span class="glyphicon glyphicon-send"></span>
+                                    &nbsp;&nbsp;Надіслати
+                                </button>
+                            </div>
+                        </form>
+                        <div class="comments_list ng-hide" ng-show="commentsList">
+                            <p>Відгуки ({{commentsList.length}}):</p>
+                            <ul class="no_ul">
+                                <li ng-repeat="comment in commentsList">
+                                    <p class="name">{{comment.email}} &nbsp;&nbsp;</p>
+                                    <div star-rating ng-model="comment.rating" readonly="true" max="5"></div>
+                                    <p class="comment"> {{comment.comment}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="loader" ng-hide="commentsList || noComments"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

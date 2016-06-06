@@ -1,0 +1,361 @@
+<div class="container">
+    <div class="row">
+        <div class="main_banner">
+            <div class="container" slider>
+                <ul class="slider">
+                    <li>
+                        <img src="http://best-m.info/vip/stok/images/%D0%A1%D0%A2%D0%9E%D0%9A.jpg"
+                             alt=""/></li>
+                    <li>
+                        <img src="http://vi.ill.in.ua/m/625x469/788879.jpg"
+                             alt=""/></li>
+                    <li>
+                        <img src="http://www.capitalpost.ru/wp-content/uploads/2013/07/stok-centr.gif"
+                             alt=""/></li>
+                    <li>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6WGzbuA3MHXkRDL550Z0YwuWq0OyBlAjqsG-GjHNZZbdCxRPohw"
+                             alt=""/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-anchor="afterBanner">
+        <div class="col-sm-4">
+            <div class="bottom_block">
+                <div class="row_right">
+                    <div class="left_side" ng-filter>
+                        <div class="widget">
+                            <div class="filters" ng-model="filters">
+                                <div class="filter"
+                                     ng-class="{'ng-hide': getBool('<%= !filter_data.search.show %>')}">
+                                    <div class="filter_name">Результати пошуку: </div>
+                                    <ul class="no_ul">
+                                        <li ng-click="toggleFilter('search', '<%= filter_data.search.items[0] %>')">
+                                            <checkbox class="btn-success"
+                                                      status="true">
+                                            </checkbox>
+                                                <span ng-class="{'active': true}"
+                                                      class="filter_item">
+                                                    <%= filter_data.search.items[0] %>
+                                                </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="filter"
+                                     ng-class="{'ng-hide': getBool('<%= !filter_data.goods.show %>')}">
+                                    <div class="filter_name">В асортименті </div>
+                                    <ul class="no_ul">
+                                        <% _.each(filter_data.goods.items, function (good, goodId) { %>
+                                            <li ng-class="{'ng-hide': getBool('<%= !good.show %>')}"
+                                                ng-click="toggleFilter('goods', '<%= goodId %>')">
+                                                <checkbox class="btn-success"
+                                                          status="{{getFilterStatus('<%= goodId %>', 'goods')}}">
+                                                </checkbox>
+                                                <span ng-class="{'active': getFilterStatus('<%= goodId %>', 'goods')}"
+                                                      class="filter_item">
+                                                    <%= good.name %>
+                                                </span>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                <div class="filter"
+                                         ng-class="{'ng-hide': getBool('<%= !filter_data.size.show %>')}">
+                                    <div class="filter_name">Розмір магазину</div>
+                                    <ul class="no_ul">
+                                        <% _.each(filter_data.size.items, function (sizeObj, size) { %>
+                                            <li ng-class="{'ng-hide': getBool('<%= !sizeObj.show %>')}"
+                                                ng-click="toggleFilter('size', '<%= size %>')">
+                                                <checkbox class="btn-success"
+                                                          status="{{getFilterStatus('<%= size %>', 'size')}}">
+                                                </checkbox>
+                                                <span ng-class="{'active': getFilterStatus('<%= size %>', 'size')}"
+                                                      class="filter_item">
+                                                    {{"<%= size %>" | sizeFilter}}
+                                                </span>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                <div class="filter">
+                                    <div class="filter_name">Вартість на кожен день</div>
+                                    <ul class="date_price_filter no_ul">
+                                        <% _.each(filter_data.dayPrice, function (priceObj, day) { %>
+                                        <li >
+                                            <label>
+                                                {{"<%= day %>" | dayFilter}}
+                                            </label>
+                                            <div class="range_wrapper">
+                                                <div slider-price
+                                                     min="<%= priceObj.min %>"
+                                                     max="<%= priceObj.max %>"
+                                                     day="<%= day %>"></div>
+                                                <span ng-show="!!price.daysPrice['<%= day %>'][0]">
+                                                    {{price.daysPrice['<%= day %>'][0]}}
+                                                </span>
+                                                <span ng-hide="!!price.daysPrice['<%= day %>'][0]">
+                                                    <%= priceObj.min %>
+                                                </span>
+                                                <span class="max_price"
+                                                      ng-show="!!price.daysPrice['<%= day %>'][1]">
+                                                    {{price.daysPrice['<%= day %>'][1]}}
+                                                </span>
+                                                <span class="max_price"
+                                                      ng-hide="!!price.daysPrice['<%= day %>'][1]">
+                                                    <%= priceObj.max %>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <% }) %>
+                                        <li>
+                                            <button ng-click="toggleFilter('daysPrice')"
+                                                   class="btn btn-success">
+                                                <span class="glyphicon glyphicon-ok-sign"></span>
+                                                &nbsp;&nbsp;Прийняти зміни
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="filter"
+                                     ng-class="{'ng-hide': getBool('<%= !filter_data.type.show %>')}">
+                                    <div class="filter_name">Тип магазину</div>
+                                    <ul class="no_ul">
+                                        <% _.each(filter_data.type.items, function (typeObj, typeId) { %>
+                                            <li ng-class="{'ng-hide': getBool('<%= !typeObj.show %>')}"
+                                                ng-click="toggleFilter('type', '<%= typeId %>')">
+                                                <checkbox class="btn-success"
+                                                          status="{{getFilterStatus('<%= typeId %>', 'type')}}">
+                                                </checkbox>
+                                                <span ng-class="{'active': getFilterStatus('<%= typeId %>', 'type')}"
+                                                      class="filter_item">
+                                                    {{"<%= typeId %>" | typeFilter}}
+                                                </span>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                <div class="filter price_value">
+                                    <div class="filter_name">Досавка нового товару</div>
+                                    <ul class="btn-group no_ul">
+                                        <% _.each(filter_data.maxPriceDays.items, function (dayObj, day) { %>
+                                            <label ng-class="{'active': getFilterStatus('<%= day %>', 'max_price')}"
+                                                   ng-click="toggleFilter('max_price', '<%= day %>')"
+                                                   class="btn btn-success">
+                                                {{"<%= day %>" | dayFilter}}
+                                            </label>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                <div class="filter range_price">
+                                    <div class="filter_name">Ціна</div>
+                                    <div class="range_wrapper">
+                                        <div slider-price
+                                             min="<%= filter_data.price.min_price %>"
+                                             max="<%= filter_data.price.max_price %>">
+                                        </div>
+                                        <span ng-show="!!price.genPrice[0]">{{price.genPrice[0]}}</span>
+                                        <span ng-hide="!!price.genPrice[0]"><%= filter_data.price.min_price %></span>
+                                        <span class="max_price"
+                                            ng-show="!!price.genPrice[1]">
+                                            {{price.genPrice[1]}}
+                                        </span>
+                                        <span class="max_price"
+                                              ng-hide="!!price.genPrice[0]">
+                                            <%= filter_data.price.max_price %>
+                                        </span>
+
+                                    </div>
+                                    <button ng-click="toggleFilter('genPrice')"
+                                            class="btn btn-success">
+                                        <span class="glyphicon glyphicon-ok-sign"></span>
+                                        &nbsp;&nbsp;Прийняти зміни
+                                    </button>
+                                </div>
+                                <div class="filter price_value">
+                                    <div class="filter_name">Дні найнижчих цін</div>
+                                    <ul class="btn-group no_ul">
+                                        <% _.each(filter_data.minPriceDays.items, function (dayObj, day) { %>
+                                            <label ng-class="{'active': getFilterStatus('<%= day %>', 'min_price')}"
+                                                   ng-click="toggleFilter('min_price', '<%= day %>')"
+                                                   class="btn btn-success">
+                                                {{"<%= day %>" | dayFilter}}
+                                            </label>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                <div class="filter"
+                                     ng-class="{'ng-hide': getBool('<%= !filter_data.chainStores.show %>')}">
+                                    <div class="filter_name">Мережі магазинів</div>
+                                    <ul class="no_ul">
+                                        <% _.each(filter_data.chainStores.items, function (storesObj, storesId) { %>
+                                            <li ng-click="toggleFilter('wide', '<%= storesId %>')"
+                                                ng-class="{'ng-hide': getBool('<%= !storesObj.show %>')}">
+                                                <checkbox class="btn-success"
+                                                          status="{{getFilterStatus('<%= storesId %>', 'wide')}}">
+                                                </checkbox>
+                                                <span ng-class="{'active': getFilterStatus('<%= storesId %>', 'wide')}"
+                                                        class="filter_item">
+                                                    <%= storesObj.name %>
+                                                </span>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                <div class="filter">
+                                    <div class="filter_name">Рейтинг</div>
+                                    <ul class="no_ul">
+                                        <% _.each(filter_data.rating, function (rating, index) { %>
+                                            <li ng-click="toggleFilter('rating', '<%= rating %>')">
+                                                <checkbox class="btn-success"
+                                                          status="{{getFilterStatus('<%= rating %>', 'rating')}}">
+                                                </checkbox>
+                                                <div star-rating class="rating filter_item"
+                                                     ng-model="rating_f<%= rating %>"
+                                                     max="5"
+                                                     readonly="true">
+                                                </div>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="bottom_block">
+                <div class="row">
+                    <div class="right_side">
+                        <ul class="no_ul shops_list">
+                            <% _.each(shops, function (shop, index) { %>
+                            <li class="shop_element">
+                                <div class="shop_element_wrapper">
+                                    <div class="shop_title">
+                                        <div class="title_back" style="background-color: <%= shop.color %>">
+                                            <span class="shop_name"><%= shop.name %></span>
+                                        </div>
+                                        <span class="img_wrapper">
+
+                                                <a
+                                                    href="/upload/shops/<%= shop.media.logo %>"
+                                                    data-lightbox="<%= shop.media.id %>"
+                                                    data-title="<%= shop.name %>">
+
+                                                    <img
+                                                        <%if (shop.media.logo == "") { %>
+                                                            src="/admin/img/no_photo.gif"
+                                                        <%} else {%>
+                                                            src="/upload/shops/<%= shop.media.logo %>"
+                                                        <%}%>
+                                                    />
+                                                </a>
+
+                                            <%if (shop.media.images.length > 0) { %>
+                                                <div class="sm_img_list">
+                                                    <% _.each(shop.media.images, function (image) { %>
+                                                        <a href="/upload/shops/<%= image %>"
+                                                           data-lightbox="<%= shop.media.id %>"
+                                                           data-title="<%= shop.name %>">
+                                                            <img src="/upload/shops/<%= image %>"/>
+                                                        </a>
+                                                    <% }) %>
+                                                </div>
+                                            <%}%>
+                                            <%if (shop.rating) { %>
+                                                <div star-rating ng-init="shopRating<%=index%> = <%= shop.rating.rating %>"
+                                                     ng-model="shopRating<%=index%>"
+                                                     max="5"
+                                                     readonly="true">
+                                                </div>
+                                            <%}%>
+                                        </span>
+                                    </div>
+                                    <div class="shop_content">
+                                        <div class="shop_address">
+                                            <div class="backdown">Адреса:
+                                                <a><%= shop.address %></a>
+                                            </div>
+                                            <button map-popup
+                                            location="<%= shop.location %>"
+                                            shopName="<%= shop.name %>"
+                                            shopAddess="<%= shop.address %>"
+                                            shopColor="<%= shop.color %>"
+                                            class="btn btn-info">
+                                                <span class="glyphicon glyphicon-zoom-in"></span>
+                                                &nbsp;&nbsp;Переглянути на карті
+                                            </button>
+                                        </div>
+                                        <div class="type">Тип магазину:
+                                            <a>{{"<%= shop.type %>" | typeFilter}}</a>
+                                        </div>
+                                        <div class="size" >Розмір магазину:
+                                             <a>{{"<%= shop.size %>" | sizeFilter}}</a>
+                                        </div>
+                                        <div ng-not-null="<%= shop.telephone %>" class="telephone">Телeфон:
+                                            <a><%= shop.telephone %></a>
+                                        </div>
+                                        <div ng-not-null="<%= shop.site %>" class="site">Сайт:
+                                            <a target="_blank"
+                                               href="<%= shop.site %>" ><%= shop.site %></a>
+                                        </div>
+                                        <a href="/shop/<%= shop.id %>">
+                                            <button class="btn btn-success md">
+                                                Переглянути всю інформацію
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <% }) %>
+                        </ul>
+                        <pre>
+                            {{"<%= paginator.current %>" | currentPage; itemsPerPage = 3}}
+                        </pre>
+                        <% _.each(paginator.links, function (page, pageIndex) { %>
+                        <a class="fake_link" href="<%= page %>">Сторінка <%=pageIndex + 1 %></a>
+                        <% }) %>
+                        <pagination
+                                ng-pagination
+                                ng-if="<%= paginator.total %> > itemsPerPage"
+                                total-items="<%= paginator.total %>"
+                                ng-model="currentPage"
+                                max-size="maxSize"
+                                class="pagination-sm"
+                                boundary-links="true"
+                                rotate="false"
+                                num-pages="numPages"
+                                items-per-page="itemsPerPage"
+                                first-text="{{firstText}}"
+                                last-text="{{lastText}}"
+                                previous-text="{{prevText}}"
+                                next-text="{{nextText}}"
+                                ng-click="changePage($index)">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="widget">
+            <p>Пропонуєм Вашій увазі СтОк – зручний і корисний довідник, який має на меті допомогти клієнту
+                і продавцю зустрітись у зручному місці в зручний час. На майданчику СтОк представлені магазини
+                категорії «сток» та «секонд хенд» міста Івано-Франківська. СтОк налічує велику кількість продавців
+                одягу та взуття, брендового одягу, недорогого одягу, жіночого одягу, дитячого одягу. Скориставшись
+                даним ресурсом Ви легко зможете віднайти необхідний Вам магазин «секонд хенд» чи магазин «сток»,
+                контакти даних магазинів, а також місце розташування на карті міста Івано-Франківська. Водночас на
+                СтОк э можливість переглянути рейтинги секондів Івано-Франківська та ціни в конкретно вибраному
+                магазиніна кожен день тижня. На інтернет-секонд можете також шукати, де купити брендовий дитячий одяг
+                для малих модників за досить вигідною ціною та з мінімальними витратами. Недорогий одяг може створити
+                елегантний і неповторний образ кожної жінки. Оновлюйте свій гардеробі створюйте індивідуальний стиль з
+                допомогою пропозицій жіночого одягу сток, секонд хенд від магазинів розміщенихна СтОк
+                    Якщо Ви – продавець стокового одягу чи одягу секонд хенд – СтОк запрошує додати Ваш магазин та допомогти
+                більшій
+                кількості клієнтів дізнатися про Вас. За допомогою декількох нескладних операцій зможете розмістити
+                Вашу рекламу та донести її до широкої аудиторії інтернет-користувачів.</p>
+        </div>
+    </div>
+</div>

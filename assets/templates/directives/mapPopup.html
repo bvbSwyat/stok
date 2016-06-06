@@ -1,0 +1,14 @@
+<div class="map_container" ng-controller="MapController">
+    <ya-map ya-zoom="11"
+            ya-center="[24.7101, 48.9226]"
+            ya-controls="zoomControl"
+            ya-options="{balloonMaxWidth: 200}"
+            ya-after-init="afterInit($target)"
+            ya-event-click="mapClick($event)"
+            ya-event-balloonopen="balloonOpen()"
+            ya-event-contextmenu="handleContext($event)">
+        <ya-geo-object ya-source="iconObj.info"
+                       ya-options="{{iconObj.style}}">
+        </ya-geo-object>
+    </ya-map>
+</div>

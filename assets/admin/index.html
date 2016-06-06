@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+
+    <link rel="stylesheet" href="/admin/css/ng_admin.css">
+    <link rel="stylesheet" href="/js/dependencies/angular-bootstrap-colorpicker/css/colorpicker.css">
+    <link rel="stylesheet" href="/admin/css/main.css">
+
+    <script src="/js/dependencies/jquery/dist/jquery.min.js"></script>
+    <script src="/js/dependencies/angular/angular.min.js"></script>
+    <script src="/js/dependencies/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/js/dependencies/angular-route/angular-route.min.js"></script>
+    <script src="/js/dependencies/angular-local-storage/angular-local-storage.min.js"></script>
+    <script src="/js/dependencies/angular-resource/angular-resource.min.js"></script>
+    <script src="/js/dependencies/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
+
+    <script src="/admin/js/app.js"></script>
+
+    <script src="/admin/modules/auth/authApp.js"></script>
+    <script src="/admin/modules/auth/AuthController.js"></script>
+
+    <script src="/admin/js/adminController.js"></script>
+    <script src="/admin/js/directives.js"></script>
+    <script src="/admin/js/RestService.js"></script>
+    <script src="/admin/js/config.js"></script>
+    <script src="/admin/js/ng_admin.min.js"></script>
+    <script src="/admin/js/aviary/aviary.js"></script>
+</head>
+<body class="admin" ng-app="AdminApp" ng-controller="adminController">
+    <div ui-view></div>
+</body>
+</html>
