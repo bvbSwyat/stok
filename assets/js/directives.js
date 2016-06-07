@@ -526,24 +526,24 @@ NgApp.controller('MainController', function () {
 //     }
 // });
 //
-// NgApp.filter("sizeFilter", function () {
-//     return function (size) {
-//         var ret_size = "Малий";
-//         switch (size) {
-//             case "b":
-//             {
-//                 ret_size = "Великий";
-//                 break;
-//             }
-//             case "m":
-//             {
-//                 ret_size = "Середній";
-//                 break;
-//             }
-//         }
-//         return ret_size;
-//     }
-// })
+NgApp.filter("sizeFilter", function () {
+    return function (size) {
+        var ret_size = "Малий";
+        switch (size) {
+            case "b":
+            {
+                ret_size = "Великий";
+                break;
+            }
+            case "m":
+            {
+                ret_size = "Середній";
+                break;
+            }
+        }
+        return ret_size;
+    }
+})
 //
 // NgApp.filter("currentPage", function ($rootScope) {
 //     return function (currentPage) {
