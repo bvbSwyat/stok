@@ -526,57 +526,57 @@ NgApp.directive('slider', function () {
 //     }
 // });
 
-// NgApp.filter("sizeFilter", function () {
-//     return function (size) {
-//         var ret_size = "Малий";
-//         switch (size) {
-//             case "b":
-//             {
-//                 ret_size = "Великий";
-//                 break;
-//             }
-//             case "m":
-//             {
-//                 ret_size = "Середній";
-//                 break;
-//             }
-//         }
-//         return ret_size;
-//     }
-// })
-//
-// NgApp.filter("currentPage", function ($rootScope) {
-//     return function (currentPage) {
-//         $rootScope.currentPage = currentPage;
-//         return currentPage;
-//     }
-// })
-//
-// NgApp.filter("typeFilter", function () {
-//     return function (size) {
-//         var ret_type = "Секонд Хенд";
-//         switch (size) {
-//             case "st":
-//             {
-//                 ret_type = "Сток";
-//                 break;
-//             }
-//             case "ss":
-//             {
-//                 ret_type = "Секонд Хенд / Сток";
-//                 break;
-//             }
-//         }
-//         return ret_type;
-//     }
-// })
-//
-// NgApp.filter("dayFilter", function () {
-//     return function (day) {
-//         var engDays = {'mo': 'Пн', 'tu': 'Вт', 'we': 'Ср', 'th': 'Чт', 'fr': 'Пт', 'sa': 'Сб', 'su': 'Нд'};
-//         return engDays[day];
-//     }
-// })
+NgApp.filter("sizeFilter", function () {
+    return function (size) {
+        var ret_size = "Малий";
+        switch (size) {
+            case "b":
+            {
+                ret_size = "Великий";
+                break;
+            }
+            case "m":
+            {
+                ret_size = "Середній";
+                break;
+            }
+        }
+        return ret_size;
+    }
+})
+
+NgApp.filter("currentPage", function ($rootScope) {
+    return function (currentPage) {
+        $rootScope.currentPage = currentPage;
+        return currentPage;
+    }
+})
+
+NgApp.filter("typeFilter", function () {
+    return function (size) {
+        var ret_type = "Секонд Хенд";
+        switch (size) {
+            case "st":
+            {
+                ret_type = "Сток";
+                break;
+            }
+            case "ss":
+            {
+                ret_type = "Секонд Хенд / Сток";
+                break;
+            }
+        }
+        return ret_type;
+    }
+})
+
+NgApp.filter("dayFilter", function () {
+    return function (day) {
+        var engDays = {'mo': 'Пн', 'tu': 'Вт', 'we': 'Ср', 'th': 'Чт', 'fr': 'Пт', 'sa': 'Сб', 'su': 'Нд'};
+        return engDays[day];
+    }
+})
 
 // NgApp.directive("checkbox", function () {
 //     return {
