@@ -2,8 +2,8 @@
  * Created by swyat on 08.06.15.
  */
 
-NgApp.controller('MainController', function ($scope, $rootScope, $modal, $log, $window) {
-
+// NgApp.controller('MainController', function ($scope, $rootScope, $modal, $log, $window) {
+//
     // var modalInstance;
     //
     // $scope.initCtrl = function() {
@@ -89,4 +89,4 @@ NgApp.controller('MainController', function ($scope, $rootScope, $modal, $log, $
     //
     //     return (prePath == '/'? prePath: '') +paramName+ '/' + paramValue + postPath;
     // };
-});
+// });

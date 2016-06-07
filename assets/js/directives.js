@@ -9,6 +9,10 @@ var NgApp = angular.module("NgApp", [
     "ngResource"
 ]);
 
+NgApp.controller('MainController', function ($scope, $rootScope, $modal, $log, $window) {
+  
+});
+
 // NgApp.config(['$locationProvider', 'yaMapSettingsProvider',
 //     function ($locationProvider, yaMapSettingsProvider) {
 //         yaMapSettingsProvider.setLanguage('uk_UA');
