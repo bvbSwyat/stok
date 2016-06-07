@@ -71,7 +71,7 @@
                                                 </checkbox>
                                                 <span ng-class="{'active': getFilterStatus('<%= size %>', 'size')}"
                                                       class="filter_item">
-                                                    {{"<%= size %>" | sizeFilter}}
+                                                    <!--{{"<%= size %>" | sizeFilter}}-->
                                                 </span>
                                             </li>
                                         <% }) %>
@@ -83,7 +83,7 @@
                                         <% _.each(filter_data.dayPrice, function (priceObj, day) { %>
                                         <li >
                                             <label>
-                                                {{"<%= day %>" | dayFilter}}
+                                                <!--{{"<%= day %>" | dayFilter}}-->
                                             </label>
                                             <div class="range_wrapper">
                                                 <div slider-price
@@ -129,7 +129,7 @@
                                                 </checkbox>
                                                 <span ng-class="{'active': getFilterStatus('<%= typeId %>', 'type')}"
                                                       class="filter_item">
-                                                    {{"<%= typeId %>" | typeFilter}}
+                                                    <!--{{"<%= typeId %>" | typeFilter}}-->
                                                 </span>
                                             </li>
                                         <% }) %>
@@ -142,7 +142,7 @@
                                             <label ng-class="{'active': getFilterStatus('<%= day %>', 'max_price')}"
                                                    ng-click="toggleFilter('max_price', '<%= day %>')"
                                                    class="btn btn-success">
-                                                {{"<%= day %>" | dayFilter}}
+                                                <!--{{"<%= day %>" | dayFilter}}-->
                                             </label>
                                         <% }) %>
                                     </ul>
@@ -179,7 +179,7 @@
                                             <label ng-class="{'active': getFilterStatus('<%= day %>', 'min_price')}"
                                                    ng-click="toggleFilter('min_price', '<%= day %>')"
                                                    class="btn btn-success">
-                                                {{"<%= day %>" | dayFilter}}
+                                                <!--{{"<%= day %>" | dayFilter}}-->
                                             </label>
                                         <% }) %>
                                     </ul>
@@ -289,10 +289,10 @@
                                             </button>
                                         </div>
                                         <div class="type">Тип магазину:
-                                            <a>{{"<%= shop.type %>" | typeFilter}}</a>
+                                            <!--<a>{{"<%= shop.type %>" | typeFilter}}</a>-->
                                         </div>
                                         <div class="size" >Розмір магазину:
-                                             <a>{{"<%= shop.size %>" | sizeFilter}}</a>
+                                             <!--<a>{{"<%= shop.size %>" | sizeFilter}}</a>-->
                                         </div>
                                         <div ng-not-null="<%= shop.telephone %>" class="telephone">Телeфон:
                                             <a><%= shop.telephone %></a>
@@ -312,7 +312,7 @@
                             <% }) %>
                         </ul>
                         <pre>
-                            {{"<%= paginator.current %>" | currentPage; itemsPerPage = 3}}
+                            <!--{{"<%= paginator.current %>" | currentPage; itemsPerPage = 3}}-->
                         </pre>
                         <% _.each(paginator.links, function (page, pageIndex) { %>
                         <a class="fake_link" href="<%= page %>">Сторінка <%=pageIndex + 1 %></a>
