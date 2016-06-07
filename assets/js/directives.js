@@ -5,7 +5,7 @@ var NgApp = angular.module("NgApp", [
     "ui.bootstrap",
     "ngRoute",
     "LocalStorageModule",
-    "yaMap",
+    //"yaMap",
     "ngResource"
 ]);
 
@@ -40,63 +40,63 @@ NgApp.directive('headerMenu', function () {
         }
     }
 });
-//
-// /**
-//  * @directive ngAnchor - directive for setting custom anchor without hash
-//  */
-// NgApp.directive('ngAnchor', function(localStorageService) {
-//     return {
-//         restrict: 'A',
-//         link: function ($scope, element, attrs) {
-//             if (angular.isDefined(attrs.ngAnchor)) {
-//                 var scrollPosition = localStorageService.get('scrollPosition');
-//                 if (angular.isDefined(scrollPosition) && scrollPosition != null && scrollPosition.length > 0) {
-//                     goScroll(scrollPosition);
-//                 }
-//                 localStorageService.remove('scrollPosition');
-//
-//                 function goScroll(scrollType) {
-//                     var marginVal = 0;
-//                     switch(scrollType) {
-//                         case "afterBanner": {
-//                             marginVal = 55;
-//                         }
-//                     }
-//                     $("body").animate({ scrollTop: element.position().top - marginVal}, 300);
-//                 }
-//             } else {
-//                 throw new Error('NgAnchor. There is no anchor parameter!');
-//             }
-//
-//             $scope.initAnchor = function(scrollType) {
-//                 if (angular.isDefined(scrollType)) {
-//                     localStorageService.set('scrollPosition', scrollType);
-//                 } else {
-//                     throw new Error('NgAnchor. Problem with setting anchor!');
-//                 }
-//             }
-//         }
-//     }
-// });
-//
-// /**
-//  * @directive chainStores - directive for setting chain stores list into header menu
-//  */
-// NgApp.directive('chainStores', function(RestService, $compile) {
-//     return {
-//         restrict: 'E',
-//         link: function ($scope, element, attrs) {
-//
-//                 RestService.getChainStores().then(function(chainStores) {
-//                 angular.forEach(chainStores, function(chainItem) {
-//                     element.append("<li><a href='/filter/wide="+ chainItem.id +";'>"+ chainItem.name +"</a></li>");
-//                 });
-//                 $compile(element.contents())($scope);
-//             });
-//         }
-//     }
-// });
-//
+
+/**
+ * @directive ngAnchor - directive for setting custom anchor without hash
+ */
+NgApp.directive('ngAnchor', function(localStorageService) {
+    return {
+        restrict: 'A',
+        link: function ($scope, element, attrs) {
+            if (angular.isDefined(attrs.ngAnchor)) {
+                var scrollPosition = localStorageService.get('scrollPosition');
+                if (angular.isDefined(scrollPosition) && scrollPosition != null && scrollPosition.length > 0) {
+                    goScroll(scrollPosition);
+                }
+                localStorageService.remove('scrollPosition');
+
+                function goScroll(scrollType) {
+                    var marginVal = 0;
+                    switch(scrollType) {
+                        case "afterBanner": {
+                            marginVal = 55;
+                        }
+                    }
+                    $("body").animate({ scrollTop: element.position().top - marginVal}, 300);
+                }
+            } else {
+                throw new Error('NgAnchor. There is no anchor parameter!');
+            }
+
+            $scope.initAnchor = function(scrollType) {
+                if (angular.isDefined(scrollType)) {
+                    localStorageService.set('scrollPosition', scrollType);
+                } else {
+                    throw new Error('NgAnchor. Problem with setting anchor!');
+                }
+            }
+        }
+    }
+});
+
+/**
+ * @directive chainStores - directive for setting chain stores list into header menu
+ */
+NgApp.directive('chainStores', function(RestService, $compile) {
+    return {
+        restrict: 'E',
+        link: function ($scope, element, attrs) {
+
+                RestService.getChainStores().then(function(chainStores) {
+                angular.forEach(chainStores, function(chainItem) {
+                    element.append("<li><a href='/filter/wide="+ chainItem.id +";'>"+ chainItem.name +"</a></li>");
+                });
+                $compile(element.contents())($scope);
+            });
+        }
+    }
+});
+
 NgApp.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
