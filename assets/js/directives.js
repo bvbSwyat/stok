@@ -2,7 +2,11 @@
  * Created by swyat on 19.04.15.
  */
 var NgApp = angular.module("NgApp", [
-
+    "ui.bootstrap",
+    "ngRoute",
+    "LocalStorageModule",
+    "yaMap",
+    "ngResource"
 ]);
 
 NgApp.controller('MainController', function () {
