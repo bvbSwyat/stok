@@ -179,83 +179,83 @@ NgApp.directive('slider', function () {
         }
     }
 });
-//
-// /**
-//  * @directive slider - directive for slider
-//  */
-// NgApp.directive("starRating", function () {
-//     return {
-//         restrict: "EA",
-//         template: "<ul ng-if='stars.length > 0' class='rating' ng-class='{readonly: readonly}'>" +
-//         "  <li ng-repeat='star in stars' ng-class='star' ng-click='toggle($index)'>" +
-//         "  </li>" +
-//         "</ul>",
-//         scope: {
-//             ratingValue: "=ngModel",
-//             stars: "=?",
-//             max: "=?", //optional: default is 5
-//             onRatingSelected: "&?",
-//             readonly: "=?"
-//         },
-//         link: function (scope, elem, attrs) {
-//             if (scope.max == undefined) {
-//                 scope.max = 5;
-//             }
-//             function updateStars() {
-//                 scope.stars = [];
-//                 for (var i = 0; i < scope.max; i++) {
-//                     scope.stars.push({
-//                         filled: i < scope.ratingValue
-//                     });
-//                 }
-//             };
-//             scope.toggle = function (index) {
-//                 if (scope.readonly == undefined || scope.readonly == false) {
-//                     scope.ratingValue = index + 1;
-//                     //scope.onRatingSelected({
-//                     //    rating: index + 1
-//                     //});
-//                 }
-//             };
-//             scope.$watch("ratingValue", function (oldVal, newVal) {
-//                 if (newVal) {
-//                     updateStars();
-//                 }
-//             });
-//         }
-//     };
-// });
-//
-// /**
-//  * @directive slider - directive for paginator
-//  */
-// NgApp.directive("ngPagination", function ($window, $rootScope, $location) {
-//     return {
-//         restrict: "A",
-//         link: function ($scope, elem, attrs) {
-//             //change it in html too
-//             $scope.itemsPerPage = 10;
-//             $scope.maxSize = 5;
-//             $scope.bigTotalItems = 175;
-//             $scope.firstText = "Перша";
-//             $scope.lastText = "Остання";
-//             $scope.prevText = "Попередня"
-//             $scope.nextText = "Наступна";
-//
-//             $scope.$watch('currentPage', function(value, prev) {
-//                 if (value != prev) {
-//                     if (value === 1) {
-//                         $window.location.pathname = $scope.changeInUrl('page', null);
-//                     } else{
-//
-//                         $window.location.pathname = $scope.changeInUrl('page', value);
-//                     }
-//                 }
-//
-//             })
-//         }
-//     };
-// });
+
+/**
+ * @directive slider - directive for slider
+ */
+NgApp.directive("starRating", function () {
+    return {
+        restrict: "EA",
+        template: "<ul ng-if='stars.length > 0' class='rating' ng-class='{readonly: readonly}'>" +
+        "  <li ng-repeat='star in stars' ng-class='star' ng-click='toggle($index)'>" +
+        "  </li>" +
+        "</ul>",
+        scope: {
+            ratingValue: "=ngModel",
+            stars: "=?",
+            max: "=?", //optional: default is 5
+            onRatingSelected: "&?",
+            readonly: "=?"
+        },
+        link: function (scope, elem, attrs) {
+            if (scope.max == undefined) {
+                scope.max = 5;
+            }
+            function updateStars() {
+                scope.stars = [];
+                for (var i = 0; i < scope.max; i++) {
+                    scope.stars.push({
+                        filled: i < scope.ratingValue
+                    });
+                }
+            };
+            scope.toggle = function (index) {
+                if (scope.readonly == undefined || scope.readonly == false) {
+                    scope.ratingValue = index + 1;
+                    //scope.onRatingSelected({
+                    //    rating: index + 1
+                    //});
+                }
+            };
+            scope.$watch("ratingValue", function (oldVal, newVal) {
+                if (newVal) {
+                    updateStars();
+                }
+            });
+        }
+    };
+});
+
+/**
+ * @directive slider - directive for paginator
+ */
+NgApp.directive("ngPagination", function ($window, $rootScope, $location) {
+    return {
+        restrict: "A",
+        link: function ($scope, elem, attrs) {
+            //change it in html too
+            $scope.itemsPerPage = 10;
+            $scope.maxSize = 5;
+            $scope.bigTotalItems = 175;
+            $scope.firstText = "Перша";
+            $scope.lastText = "Остання";
+            $scope.prevText = "Попередня"
+            $scope.nextText = "Наступна";
+
+            $scope.$watch('currentPage', function(value, prev) {
+                if (value != prev) {
+                    if (value === 1) {
+                        $window.location.pathname = $scope.changeInUrl('page', null);
+                    } else{
+
+                        $window.location.pathname = $scope.changeInUrl('page', value);
+                    }
+                }
+
+            })
+        }
+    };
+});
 
 /**
  * @directive slider - directive for setting filter
