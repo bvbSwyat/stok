@@ -663,52 +663,52 @@ NgApp.filter("dayFilter", function () {
 //         }
 //     }
 // });
-//
-// /**
-//  * @directive comments - directive for getting comments data
-//  */
-// NgApp.directive("comments", function (RestService) {
-//     return {
-//         restrict: "A",
-//         link: function (scope, elem, attrs) {
-//
-//             if (angular.isUndefined(attrs.comments)) {
-//                 return;
-//             }
-//             scope.noComments = false;
-//             scope.crating = 5;
-//
-//             scope.sendNewComment = function(formObj) {
-//                 if (formObj.$valid) {
-//                     RestService.createComment(attrs.comments, scope.cemail, scope.crating, scope.ccomment).then(function(data) {
-//                         scope.crating = 5;
-//                         scope.cemail = "";
-//                         scope.ccomment = "";
-//                         alert("Ваш коментар прийнято. Він буде доступний після перевірки.");
-//                     });
-//                 }
-//             }
-//
-//             scope.getComments = function() {
-//                 RestService.getComments(attrs.comments).then(function(response, data) {
-//                     console.log(response[0])
-//                     if (angular.isUndefined(response[0])) {
-//
-//                         //setTimeout(function() {
-//                         scope.noComments = true;
-//                         //},500);
-//                     } else {
-//                         scope.commentsList = response;
-//                     }
-//
-//                 }, function() {
-//                     scope.noComments = true;
-//                 })
-//             };
-//
-//             scope.getComments();
-//         }
-//     }
-// });
+
+/**
+ * @directive comments - directive for getting comments data
+ */
+NgApp.directive("comments", function (RestService) {
+    return {
+        restrict: "A",
+        link: function (scope, elem, attrs) {
+
+            if (angular.isUndefined(attrs.comments)) {
+                return;
+            }
+            scope.noComments = false;
+            scope.crating = 5;
+
+            scope.sendNewComment = function(formObj) {
+                if (formObj.$valid) {
+                    RestService.createComment(attrs.comments, scope.cemail, scope.crating, scope.ccomment).then(function(data) {
+                        scope.crating = 5;
+                        scope.cemail = "";
+                        scope.ccomment = "";
+                        alert("Ваш коментар прийнято. Він буде доступний після перевірки.");
+                    });
+                }
+            }
+
+            scope.getComments = function() {
+                RestService.getComments(attrs.comments).then(function(response, data) {
+                    console.log(response[0])
+                    if (angular.isUndefined(response[0])) {
+
+                        //setTimeout(function() {
+                        scope.noComments = true;
+                        //},500);
+                    } else {
+                        scope.commentsList = response;
+                    }
+
+                }, function() {
+                    scope.noComments = true;
+                })
+            };
+
+            scope.getComments();
+        }
+    }
+});
 
 
