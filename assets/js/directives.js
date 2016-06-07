@@ -93,92 +93,92 @@ NgApp.directive('headerMenu', function () {
 //     }
 // });
 //
-// NgApp.directive('ngEnter', function () {
-//     return function (scope, element, attrs) {
-//         element.bind("keydown keypress", function (event) {
-//             if(event.which === 13) {
-//                 scope.$apply(function (){
-//                     scope.$eval(attrs.ngEnter);
-//                 });
-//
-//                 event.preventDefault();
-//             }
-//         });
-//     };
-// });
-//
-// NgApp.directive('ngSearch', function() {
-//     return {
-//         restrict: 'A',
-//         link: function ($scope, element, attrs) {
-//
-//             $scope.setSearchFocus = function() {
-//                 $scope.searchValue = "";
-//                 element.focus();
-//             }
-//
-//             $scope.search = function() {
-//                 if ($scope.searchValue.length > 0) {
-//                     $scope.toggleFilter('search', $scope.searchValue.replace(/[^\d\w\s\.\,А-я]/g, " "));
-//                 }
-//             }
-//         }
-//     }
-// });
-//
-// NgApp.directive('ngNotNull', function() {
-//     return {
-//         restrict: 'A',
-//         priority: 0,
-//         compile: function() {
-//             return {
-//                 pre: function preLink($scope, element, attrs) {
-//                     if (attrs.ngNotNull != 'null') {
-//                         element.show();
-//                     } else {
-//                         element.hide();
-//
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// });
-//
-// /**
-//  * @directive slider - directive for slider
-//  */
-// NgApp.directive('slider', function () {
-//     return {
-//         restrict: 'A',
-//         link: function (scope, element, attrs) {
-//             $.getScript('http://responsiveslides.com/responsiveslides.min.js', function () {
-//                 $(".slider").responsiveSlides({
-//                     speed: 1000
-//                 });
-//                 /*
-//                  auto: true,             // Boolean: Animate automatically, true or false
-//                  speed: 500,            // Integer: Speed of the transition, in milliseconds
-//                  timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
-//                  pager: false,           // Boolean: Show pager, true or false
-//                  nav: false,             // Boolean: Show navigation, true or false
-//                  random: false,          // Boolean: Randomize the order of the slides, true or false
-//                  pause: false,           // Boolean: Pause on hover, true or false
-//                  pauseControls: true,    // Boolean: Pause when hovering controls, true or false
-//                  prevText: "Previous",   // String: Text for the "previous" button
-//                  nextText: "Next",       // String: Text for the "next" button
-//                  maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
-//                  navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
-//                  manualControls: "",     // Selector: Declare custom pager navigation
-//                  namespace: "rslides",   // String: Change the default namespace used
-//                  before: function(){},   // Function: Before callback
-//                  after: function(){}     // Function: After callback
-//                  */
-//
-//             });
-//         }
-//     }
-// });
+NgApp.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
+NgApp.directive('ngSearch', function() {
+    return {
+        restrict: 'A',
+        link: function ($scope, element, attrs) {
+
+            $scope.setSearchFocus = function() {
+                $scope.searchValue = "";
+                element.focus();
+            }
+
+            $scope.search = function() {
+                if ($scope.searchValue.length > 0) {
+                    $scope.toggleFilter('search', $scope.searchValue.replace(/[^\d\w\s\.\,А-я]/g, " "));
+                }
+            }
+        }
+    }
+});
+
+NgApp.directive('ngNotNull', function() {
+    return {
+        restrict: 'A',
+        priority: 0,
+        compile: function() {
+            return {
+                pre: function preLink($scope, element, attrs) {
+                    if (attrs.ngNotNull != 'null') {
+                        element.show();
+                    } else {
+                        element.hide();
+
+                    }
+                }
+            }
+        }
+    }
+});
+
+/**
+ * @directive slider - directive for slider
+ */
+NgApp.directive('slider', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            $.getScript('http://responsiveslides.com/responsiveslides.min.js', function () {
+                $(".slider").responsiveSlides({
+                    speed: 1000
+                });
+                /*
+                 auto: true,             // Boolean: Animate automatically, true or false
+                 speed: 500,            // Integer: Speed of the transition, in milliseconds
+                 timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+                 pager: false,           // Boolean: Show pager, true or false
+                 nav: false,             // Boolean: Show navigation, true or false
+                 random: false,          // Boolean: Randomize the order of the slides, true or false
+                 pause: false,           // Boolean: Pause on hover, true or false
+                 pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+                 prevText: "Previous",   // String: Text for the "previous" button
+                 nextText: "Next",       // String: Text for the "next" button
+                 maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+                 navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+                 manualControls: "",     // Selector: Declare custom pager navigation
+                 namespace: "rslides",   // String: Change the default namespace used
+                 before: function(){},   // Function: Before callback
+                 after: function(){}     // Function: After callback
+                 */
+
+            });
+        }
+    }
+});
 //
 // /**
 //  * @directive slider - directive for slider
