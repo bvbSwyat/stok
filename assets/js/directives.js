@@ -15,27 +15,27 @@ NgApp.controller('MainController', function () {
 //     }
 // ]);
 
-// /**
-// * @directive headerMenu - directive for header menu
-// */
-// NgApp.directive('headerMenu', function () {
-//     return {
-//         restrict: 'A',
-//         link: function (scope, element, attrs) {
-//             $(window).scroll(function () {
-//                 var logo = element.closest('.header').find('h2');
-//                 if ($(this).scrollTop() > 0) {
-//                     element.addClass('default_small', 400);
-//                     logo.addClass('logo_small', 400);
-//
-//                 } else {
-//                     element.removeClass('default_small', 400);
-//                     logo.removeClass('logo_small', 400);
-//                 }
-//             })
-//         }
-//     }
-// });
+/**
+* @directive headerMenu - directive for header menu
+*/
+NgApp.directive('headerMenu', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            $(window).scroll(function () {
+                var logo = element.closest('.header').find('h2');
+                if ($(this).scrollTop() > 0) {
+                    element.addClass('default_small', 400);
+                    logo.addClass('logo_small', 400);
+
+                } else {
+                    element.removeClass('default_small', 400);
+                    logo.removeClass('logo_small', 400);
+                }
+            })
+        }
+    }
+});
 //
 // /**
 //  * @directive ngAnchor - directive for setting custom anchor without hash
